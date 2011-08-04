@@ -40,10 +40,13 @@ class Task
         t.tag tn
       end
       t
-      self.collection << t
     else
-      self.collection << Task.new(text)
+      Task.new(text)
     end
+  end
+
+  def self.create(text)
+    self.collection << self.parse(text)
   end
 
   def self.by_tag(tag)

@@ -8,7 +8,7 @@ end
 class Controller
   def add(text)
     Task.load
-    Task.parse(text)
+    Task.create(text)
     Task.persist
     show
   end
@@ -24,6 +24,13 @@ class Controller
     Task.load
     t=Task.collection[index.to_i]
     t.complete
+    Task.persist
+    show
+  end
+  def edit(index,text)
+    Task.load
+    t=Task.parse(text)
+    Task.collection[index.to_i]=t
     Task.persist
     show
   end
