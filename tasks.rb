@@ -27,6 +27,21 @@ class Task
     "#{'[done]' if status==:completed} #{title} #{to_hashtags}"
   end
 
+  def self.parse(text)
+    pos = (text=~/#\w+/)
+    if(pos)
+      t=Task.new(text.slice(0,pos-1))
+      tags=text.scan(/#\w+/)
+      tags =tags.map { |t| t.reverse.chop.reverse }
+      tags.each do |tn|
+        t.tag tn
+      end
+      t
+    else
+      Task.new(text)
+    end
+  end
+
   def self.by_tag(tag)
     @@collection.find_all { |t| t.tags.index(tag) }
   end
@@ -35,6 +50,3 @@ class Task
   end
 end
 
-
-Task.load
-puts Task.collection
