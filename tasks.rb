@@ -2,18 +2,27 @@ require 'yaml'
 
 tasks = []
 
-def new_task(title)
-  {:title=>title}
-end
-
-def complete_task(task)
-  task[:status]=:completed
-  task
-end
-
-def tag_task(task,tag)
-  task[:tags] ||= []
-  task[:tags] << tag
+class Task
+  attr_accessor :title, :status, :tags
+  def initialize(title)
+    @title=title
+    @tags = []
+  end
+  def complete
+    @status=:completed
+    self
+  end
+  def tag(tag_name)
+    @tags ||= []
+    @tags << tag_name
+    self
+  end
+  def to_hashtags
+    @tags.map {|t| "##{t}" }.join(" ")
+  end
+  def to_s
+    "#{'[done]' if status==:completed} #{title} #{to_hashtags}"
+  end
 end
 
 def get_tasks_by_tag(tasks,tag)
@@ -35,14 +44,12 @@ def load
   YAML.load(yml_content)
 end
 
-#1.upto(10) do |i|
-  #t=new_task("This is task #{i}")
-  #complete_task(t) if (rand*2).round==1
-  #tag_task(t,"tag1")
-  #tag_task(t,"tag2") if (rand*2).round==1
-  #tasks << t
-#end
+1.upto(10) do |i|
+  t=Task.new("This is task #{i}")
+  t.tag "tag1"
+  t.tag "tag2" if (rand*2).round==1
+  t.complete if (rand*2).round==1
+  tasks << t
+end
 
-tasks = load
 puts tasks
-
