@@ -34,6 +34,12 @@ class Controller
     Task.persist
     show
   end
+  def delete(index)
+    Task.load
+    Task.collection.delete_at(index.to_i)
+    Task.persist
+    show
+  end
 end
 
 c=Controller.new
