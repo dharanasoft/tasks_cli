@@ -1,7 +1,10 @@
+$:.unshift(".")
 require 'yaml'
-
+require 'persistence'
 class Task
-  @@tasks = []
+  include Persistence
+  @@collection= []
+
   attr_accessor :title, :status, :tags
   def initialize(title)
     @title=title
@@ -25,25 +28,13 @@ class Task
   end
 
   def self.by_tag(tag)
-    @@tasks.find_all { |t| t.tags.index(tag) }
+    @@collection.find_all { |t| t.tags.index(tag) }
   end
   def self.complete_by_tag(tag)
     by_tag(tag).map { |t| t.complete }
-  end
-  def self.persist
-    f=File.open('tasks.yml','w')
-    f.write @@tasks.to_yaml
-    f.close
-  end
-  def self.load
-    yml_content=File.read('tasks.yml')
-    @@tasks=YAML.load(yml_content)
-  end
-  def self.tasks
-    @@tasks
   end
 end
 
 
 Task.load
-puts Task.tasks
+puts Task.collection
