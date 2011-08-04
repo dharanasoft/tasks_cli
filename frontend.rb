@@ -20,6 +20,13 @@ class Controller
     Task.clear!
     puts "Cleared! The collection now has #{Task.collection.length} items"
   end
+  def complete(index)
+    Task.load
+    t=Task.collection[index.to_i]
+    t.complete
+    Task.persist
+    show
+  end
 end
 
 c=Controller.new
@@ -27,5 +34,7 @@ c=Controller.new
 command = ARGV.delete_at(0)
 if(c.respond_to?(command))
   c.send(command,*ARGV)
+else
+  puts "Invalid command"
 end
 

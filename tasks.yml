@@ -3,6 +3,7 @@
   title: This is a task added
   tags:
   - urgent
+  status: :completed
 - !ruby/object:Task
   title: This is a task added
   tags:
