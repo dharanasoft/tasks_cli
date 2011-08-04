@@ -1,4 +1,8 @@
-require './tasks'
+#!/usr/bin/env ruby
+$:.unshift(File.expand_path(File.join(File.dirname(__FILE__),"../lib")))
+require 'tasks_cli'
+
+
 
 if(ARGV.length==0)
   puts "You should give me a command"

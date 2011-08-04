@@ -1,5 +1,5 @@
 require 'psych'
-
+require "tasks_cli/version"
 $:.unshift(".")
 require 'yaml'
 require 'persistence'

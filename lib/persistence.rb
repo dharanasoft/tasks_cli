@@ -11,14 +11,17 @@ module Persistence
     end
   end
   module ClassMethods
+    def yaml_file
+      File.join(ENV['HOME'],"#{self.name.tableize}.yml")
+    end
     def persist
-      f=File.open("#{self.name.tableize}.yml",'w') do |f|
+      f=File.open(yaml_file,'w') do |f|
         f.write self.collection.to_yaml
         f.close
       end
     end
     def load
-      yml_content=File.read("#{self.name.tableize}.yml")
+      yml_content=File.read(yaml_file)
       self.collection=YAML.load(yml_content)
     end
   end
