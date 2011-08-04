@@ -1,0 +1,36 @@
+--- 
+- :title: This is task 1
+  :tags: 
+  - tag1
+- :title: This is task 2
+  :tags: 
+  - tag1
+- :title: This is task 3
+  :status: :completed
+  :tags: 
+  - tag1
+- :title: This is task 4
+  :tags: 
+  - tag1
+- :title: This is task 5
+  :tags: 
+  - tag1
+- :title: This is task 6
+  :tags: 
+  - tag1
+- :title: This is task 7
+  :status: :completed
+  :tags: 
+  - tag1
+- :title: This is task 8
+  :tags: 
+  - tag1
+  - tag2
+- :title: This is task 9
+  :tags: 
+  - tag1
+  - tag2
+- :title: This is task 10
+  :status: :completed
+  :tags: 
+  - tag1
