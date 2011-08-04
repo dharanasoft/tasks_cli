@@ -1,52 +1,13 @@
---- 
-- !ruby/object:Task 
-  tags: 
-  - tag1
-  - tag2
-  title: This is task 1
-- !ruby/object:Task 
-  tags: 
-  - tag1
-  title: This is task 2
-- !ruby/object:Task 
-  tags: 
-  - tag1
-  - tag2
-  title: This is task 3
-- !ruby/object:Task 
-  status: :completed
-  tags: 
-  - tag1
-  title: This is task 4
-- !ruby/object:Task 
-  status: :completed
-  tags: 
-  - tag1
-  - tag2
-  title: This is task 5
-- !ruby/object:Task 
-  tags: 
-  - tag1
-  - tag2
-  title: This is task 6
-- !ruby/object:Task 
-  status: :completed
-  tags: 
-  - tag1
-  - tag2
-  title: This is task 7
-- !ruby/object:Task 
-  status: :completed
-  tags: 
-  - tag1
-  title: This is task 8
-- !ruby/object:Task 
-  tags: 
-  - tag1
-  title: This is task 9
-- !ruby/object:Task 
-  status: :completed
-  tags: 
-  - tag1
-  - tag2
-  title: This is task 10
+---
+- !ruby/object:Task
+  title: This is a task added
+  tags:
+  - urgent
+- !ruby/object:Task
+  title: This is a task added
+  tags:
+  - urgent
+- !ruby/object:Task
+  title: learn rails
+  tags:
+  - really_urgent

@@ -1,3 +1,5 @@
+require 'psych'
+
 $:.unshift(".")
 require 'yaml'
 require 'persistence'
@@ -23,6 +25,7 @@ class Task
   def to_hashtags
     @tags.map {|t| "##{t}" }.join(" ")
   end
+
   def to_s
     "#{'[done]' if status==:completed} #{title} #{to_hashtags}"
   end
@@ -37,8 +40,9 @@ class Task
         t.tag tn
       end
       t
+      self.collection << t
     else
-      Task.new(text)
+      self.collection << Task.new(text)
     end
   end
 
@@ -47,6 +51,15 @@ class Task
   end
   def self.complete_by_tag(tag)
     by_tag(tag).map { |t| t.complete }
+  end
+  def self.clear!
+    self.collection = []
+    self.persist
+  end
+  def self.show
+    0.upto(self.collection.length-1) do |i|
+      puts "##{i} #{self.collection[i]}"
+    end
   end
 end
 

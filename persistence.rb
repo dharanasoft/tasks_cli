@@ -12,9 +12,10 @@ module Persistence
   end
   module ClassMethods
     def persist
-      f=File.open("#{self.name.tableize}.yml",'w')
-      f.write self.collection.to_yaml
-      f.close
+      f=File.open("#{self.name.tableize}.yml",'w') do |f|
+        f.write self.collection.to_yaml
+        f.close
+      end
     end
     def load
       yml_content=File.read("#{self.name.tableize}.yml")
